@@ -100,7 +100,7 @@ func patchPod(img string) {
 	reponames = append(reponames, ecrreponame)
 	tag := s[1]
 	int_reg := strings.Split(reponame, "/")[0]
-	if int_reg != "643930694730.dkr.ecr.us-east-1.amazonaws.com" {
+	if int_reg != "<acc_num>.dkr.ecr.us-east-1.amazonaws.com" {
 		return
 	}
 	ext_reg := strings.Split(reponame, "/")[1]
@@ -183,7 +183,7 @@ func patchPod(img string) {
 		authConfig := registry.AuthConfig{
 			Username:      "AWS",
 			Password:      strings.Split(string(decodedToken), ":")[1],
-			ServerAddress: "https://643930694730.dkr.ecr.us-east-1.amazonaws.com",
+			ServerAddress: "https://<acc_num>.dkr.ecr.us-east-1.amazonaws.com",
 		}
 
 		authConfigBytes, err := json.Marshal(authConfig)

@@ -4,7 +4,7 @@ metadata:
   name: pull-through-cache
   namespace: default
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::643930694730:role/eks-pods-access-aws-services
+    eks.amazonaws.com/role-arn: arn:aws:iam::<acc_num>:role/eks-pods-access-aws-services
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
