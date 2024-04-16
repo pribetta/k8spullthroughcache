@@ -1,0 +1,27 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: pull-through-cache
+  annotations:
+    cert-manager.io/inject-ca-from: default/pull-through-cache-certs
+webhooks:
+  - name: pull-through-cache.priyankab.me
+    admissionReviewVersions:
+      - "v1beta1"
+    sideEffects: "None"
+    timeoutSeconds: 30
+    objectSelector:
+      matchLabels:
+        image-cache: "true"
+    clientConfig:
+      service:
+        name: pull-through-cache
+        namespace: default
+        path: "/mutate"
+    rules:
+      - operations: [ "CREATE", "UPDATE" ]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+        
+

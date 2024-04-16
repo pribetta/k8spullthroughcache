@@ -1,0 +1,18 @@
+kind: HTTPScaledObject
+apiVersion: http.keda.sh/v1alpha1
+metadata:
+    name: pull-through-cache
+spec:
+    hosts:
+    - pull-through-cache.priyankab.me
+    pathPrefixes:
+    - /mutate
+    scaleTargetRef:
+        name: pull-through-cache
+        kind: Deployment
+        apiVersion: apps/v1
+        service: pull-through-cache
+        port: 443
+    replicas:
+        min: 1
+        max: 10

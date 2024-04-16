@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pull-through-cache
+  namespace: default
+  labels:
+    app: pull-through-cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pull-through-cache
+  template:
+    metadata:
+      labels:
+        app: pull-through-cache
+    spec:
+      serviceAccountName: pull-through-cache
+      containers:
+      - name: pull-through-cache
+        image: 643930694730.dkr.ecr.us-east-1.amazonaws.com/k8spullthrucache:latest
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        imagePullPolicy: Always
+        args:
+        - /app/pullthru-test-script.sh
+        command:
+          - sh
+        env:
+        - name: DOCKER_HOST
+          value: tcp://localhost:2375
+        - name: DOCKER_TLS_CERTDIR
+          value: ""
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1"
+        ports:
+        - containerPort: 8443
+          name: tls
+        - containerPort: 80
+          name: metrics
+        volumeMounts:
+        - name: pull-through-cache-certs
+          mountPath: /etc/webhook/certs/
+          readOnly: true
+        - name: pullthru-script-volume
+          mountPath: /app
+          readOnly: true
+      volumes:
+        - name: pull-through-cache-certs
+          secret:
+            secretName: pull-through-cache-certs
+        - name: pullthru-script-volume
+          configMap:
+            defaultMode: 0700
+            name: pullthru-script-configmap

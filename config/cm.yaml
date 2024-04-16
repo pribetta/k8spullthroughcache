@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pullthru-script-configmap
+data:
+  pullthru-test-script.sh: |
+    #!/bin/sh
+    echo `pwd`
+    sh /usr/local/bin/dockerd-entrypoint.sh &
+    /usr/local/bin/pullthru

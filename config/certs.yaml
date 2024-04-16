@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: selfsigned-issuer
+  namespace: default
+spec:
+  selfSigned: {}
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pull-through-cache-certs
+  namespace: default
+spec:
+  secretName: pull-through-cache-certs
+  dnsNames:
+    - pull-through-cache.default.svc
+    - pull-through-cache.default.svc.cluster.local
+    - pull-through-cache.priyankab.me
+  issuerRef:
+    name: selfsigned-issuer
+    
