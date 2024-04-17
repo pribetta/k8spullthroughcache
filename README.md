@@ -19,15 +19,9 @@ Having an in house registry solves all the above problems. We don't have to have
 
 ### Executing program
 
-* 
-```
+<coming soon> 
 
-## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
 
 ## Authors
 
@@ -42,13 +36,7 @@ Priyanka Bettadapura
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
